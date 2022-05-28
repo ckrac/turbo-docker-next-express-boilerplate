@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button'
 
-export default function Docs() {
+export default function Home() {
 	return (
 		<div>
 			<h1>Hello</h1>
