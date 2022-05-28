@@ -1,11 +1,12 @@
 import express from 'express'
+import routes from './routes/index.route'
+
 const app = express()
 const port = 8080
 
-app.get('/', (req, res) => {
-	res.send('Hello World!')
-})
+// Routes entry
+app.use(routes)
 
 app.listen(port, () => {
-	console.log(`Listening on port ${port}`)
+	console.log(`Server listening on port ${port}`)
 })
