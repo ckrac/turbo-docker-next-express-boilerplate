@@ -7,3 +7,17 @@ services:
       - '3000:3000'
     env_file:
       - ./.env
+
+  database:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=dev
+      - PGDATA=/var/data/postgres
+    volumes:
+      - db-data:/var/data
+
+volumes:
+  db-data:
+    driver: local
