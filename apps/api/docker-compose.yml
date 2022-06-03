@@ -3,17 +3,21 @@ version: '3'
 services:
   api:
     build: .
+    depends_on:
+      - db
     ports:
       - '3000:3000'
     env_file:
-      - ./.env
+      - ./config/.dev.env
 
-  database:
+  db:
     image: postgres:14
+    ports:
+      - '5432:5432'
     environment:
-      - POSTGRES_USER=dev
+      - POSTGRES_USER=kakarot
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=dev
+      - POSTGRES_DB=kakarot
       - PGDATA=/var/data/postgres
     volumes:
       - db-data:/var/data

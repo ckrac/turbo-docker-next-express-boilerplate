@@ -4,6 +4,12 @@ services:
   api:
     image: api.dev
     command: npm run dev
+    env_file:
+      - ./config/.dev.env
     volumes:
       - ./:/app
       - /app/node_modules
+
+  db:
+    env_file:
+      - ./config/.dev.env

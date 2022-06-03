@@ -16,7 +16,9 @@
 		"moduleResolution": "node",
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"preserveWatchOutput": true
+		"preserveWatchOutput": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
 	},
 	"include": ["**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
