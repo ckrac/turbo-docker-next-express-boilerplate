@@ -21,6 +21,11 @@ services:
       - PGDATA=/var/data/postgres
     volumes:
       - db-data:/var/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER}']
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db-data:
