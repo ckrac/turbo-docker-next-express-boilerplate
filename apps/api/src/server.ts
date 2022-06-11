@@ -1,7 +1,7 @@
 import express from 'express'
-import routes from './routes/index.route'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
+import v1Routes from './routes/v1/index.route'
 
 export const server = express()
 
@@ -12,4 +12,4 @@ server.use(bodyParser.urlencoded({ extended: false }))
 server.use(morgan('combined'))
 
 // Routes entry
-server.use(routes)
+server.use('/api/v1', v1Routes)
