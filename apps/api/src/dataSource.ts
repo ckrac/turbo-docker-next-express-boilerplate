@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm'
 import { User } from './entities/User'
 
-const AppDataSource = new DataSource({
+const dataSource = new DataSource({
 	type: 'postgres',
 	host: process?.env?.PG_HOST,
 	port: process?.env?.PG_PORT ? +process?.env?.PG_PORT : undefined,
@@ -15,4 +15,4 @@ const AppDataSource = new DataSource({
 	migrations: ['src/migrations/**/*.ts'],
 })
 
-export default AppDataSource
+export default dataSource
