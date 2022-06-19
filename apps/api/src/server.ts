@@ -1,12 +1,11 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import v1Routes from './routes/v1/index.route'
 
 export const server = express()
 
-server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({ extended: false }))
+server.use(express.json())
+server.use(express.urlencoded({ extended: false }))
 
 // Logger middleware
 server.use(morgan('combined'))
