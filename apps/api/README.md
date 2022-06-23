@@ -8,3 +8,8 @@
 
 - `yarn docker:ssh-api`
 - `yarn migration:run`
+
+## Docker commands to prune docker data
+
+- `docker system prune -a`
+- `docker volume prune`
