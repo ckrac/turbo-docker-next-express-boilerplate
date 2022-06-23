@@ -2,7 +2,6 @@ version: '3'
 
 services:
   api:
-    image: api.dev
     command: npm run dev
     env_file:
       - ./config/.dev.env
