@@ -1,9 +1,9 @@
 import 'reflect-metadata'
 import dataSource from './dataSource'
-import { server } from './server'
+import { app } from './app'
 
 const port = process.env.PORT || 3000
-server.listen(port, () => console.log(`Server listening on port ${port}`))
+app.listen(port, () => console.log(`app listening on port ${port}`))
 
 dataSource
 	.initialize()
