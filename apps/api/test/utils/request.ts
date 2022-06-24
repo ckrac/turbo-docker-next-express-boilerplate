@@ -1,9 +1,6 @@
 import _request from 'supertest'
+import { app } from '../../src/app'
 
-const serverUrl = process.env.PORT
-	? `http://localhost:${process.env.PORT}`
-	: 'http://localhost:3000'
-
-const request = _request(serverUrl)
+const request = _request(app)
 
 export { request }
