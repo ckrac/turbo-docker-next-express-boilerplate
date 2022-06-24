@@ -1,18 +1,16 @@
 import { User } from '../entities/User'
-import dataSource from '../dataSource'
-
-const userRepository = dataSource.getRepository(User)
+import { repository } from '../dataSource'
 
 const createUser = async (email: string, username: string) => {
 	const newUser = new User()
 	newUser.email = email
 	newUser.username = username
 
-	return userRepository.save(newUser)
+	return repository.user.save(newUser)
 }
 
 const getUsers = async () => {
-	return userRepository.find()
+	return repository.user.find()
 }
 
 const usersService = { createUser, getUsers }

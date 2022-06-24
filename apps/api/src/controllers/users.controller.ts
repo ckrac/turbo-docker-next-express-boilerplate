@@ -10,7 +10,7 @@ const registerUser = async (
 	const { email, username } = req.body
 	try {
 		const user = await usersService.createUser(email, username)
-		return res.status(201).send({ ...user })
+		return res.status(201).send({ data: user })
 	} catch (error) {
 		return res.status(400).send(error)
 	}

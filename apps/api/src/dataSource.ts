@@ -15,4 +15,8 @@ const dataSource = new DataSource({
 	migrations: ['src/migrations/**/*.ts'],
 })
 
+export const repository = {
+	user: dataSource.getRepository(User),
+} as const
+
 export default dataSource
