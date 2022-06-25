@@ -4,7 +4,7 @@
 	"main": "index",
 	"private": true,
 	"scripts": {
-		"dev": "nodemon --watch '**/*.ts' --exec 'ts-node' src/index.ts",
+		"dev": "nodemon",
 		"build": "tsc",
 		"start": "node dist/index.js",
 		"test-env-file": "env-cmd -f ./config/.test.env",
@@ -41,6 +41,7 @@
 		"supertest": "^6.2.3",
 		"ts-node": "^10.8.0",
 		"tsconfig": "*",
+		"tsconfig-paths": "^4.0.0",
 		"typescript": "^4.5.3"
 	}
 }

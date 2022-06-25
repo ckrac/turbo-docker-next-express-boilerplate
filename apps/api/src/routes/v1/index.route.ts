@@ -2,9 +2,9 @@ import { Router } from 'express'
 import statusRoute from './status.route'
 import usersRoute from './users.route'
 
-const routes = Router()
+const v1Routes = Router()
 
-routes.use('/status', statusRoute)
-routes.use('/users', usersRoute)
+v1Routes.use('/status', statusRoute)
+v1Routes.use('/users', usersRoute)
 
-export default routes
+export { v1Routes }

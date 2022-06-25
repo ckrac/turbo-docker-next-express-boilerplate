@@ -1,4 +1,4 @@
-import { repository } from '../../src/dataSource'
+import { repository } from '@src/dataSource'
 
 export const clearAllRepository = async () => {
 	const repositoryKeys = Object.keys(repository) as Array<

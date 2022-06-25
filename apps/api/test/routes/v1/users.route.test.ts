@@ -1,8 +1,8 @@
-import { request } from '../../utils/request'
 import { expect } from 'chai'
-import { User } from '../../../src/entities/User'
-import { clearAllRepository } from '../../utils/db'
-import usersService from '../../../src/services/users.service'
+import { User } from '@src/entities/User'
+import usersService from '@src/services/users.service'
+import { clearAllRepository } from '@test/utils/db'
+import { request } from '@test/utils/request'
 
 describe('Route v1 users', () => {
 	describe('GET /users', () => {

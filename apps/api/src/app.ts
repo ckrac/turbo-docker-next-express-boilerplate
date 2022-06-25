@@ -1,6 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
-import v1Routes from './routes/v1/index.route'
+import { v1Routes } from '@src/routes/v1/index.route'
 
 export const app = express()
 

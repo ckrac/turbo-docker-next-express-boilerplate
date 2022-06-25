@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { TypedRequestBody } from '../types/Request'
-import { User } from '../entities/User'
-import usersService from '../services/users.service'
+import { TypedRequestBody } from '@src/types/Request'
+import { User } from '@src/entities/User'
+import usersService from '@src/services/users.service'
 
 const registerUser = async (
 	req: TypedRequestBody<Omit<User, 'id'>>,

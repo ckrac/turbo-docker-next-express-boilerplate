@@ -1,5 +1,5 @@
-import { request } from '../../utils/request'
 import { expect } from 'chai'
+import { request } from '@test/utils/request'
 
 describe('Route v1 status', () => {
 	describe('GET /status', () => {

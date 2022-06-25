@@ -1,5 +1,5 @@
-import { User } from '../entities/User'
-import { repository } from '../dataSource'
+import { User } from '@src/entities/User'
+import { repository } from '@src/dataSource'
 
 const createUser = async (email: string, username: string) => {
 	const newUser = new User()

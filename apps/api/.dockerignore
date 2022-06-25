@@ -3,3 +3,4 @@ npm-debug.log
 Dockerfile
 docker-compose*
 README.md
+nodemon.json
