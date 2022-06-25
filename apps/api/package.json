@@ -14,7 +14,7 @@
 		"docker:ssh-api": "docker exec -it api_api_1 /bin/sh",
 		"docker:ssh-db": "docker exec -it api_db_1 psql -d kakarot -U kakarot",
 		"migration:create": "cd src/migrations && typeorm migration:create ",
-		"migration:run": "ts-node ./node_modules/.bin/typeorm migration:run -d src/dataSource.ts",
+		"migration:run": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm migration:run -d src/dataSource.ts",
 		"migration:run-test": "POSTGRES_DB=kakarot_test npm run migration:run"
 	},
 	"dependencies": {
