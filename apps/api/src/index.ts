@@ -8,4 +8,4 @@ app.listen(port, () => console.log(`app listening on port ${port}`))
 dataSource
 	.initialize()
 	.then(() => console.log('Database connection success'))
-	.catch((err) => console.error(err))
+	.catch((err) => console.error('Database initialization error: ', err))

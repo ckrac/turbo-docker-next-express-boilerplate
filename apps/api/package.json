@@ -1,11 +1,11 @@
 {
 	"name": "api",
 	"version": "0.0.0",
-	"main": "index",
+	"main": "dist/src/index.js",
 	"private": true,
 	"scripts": {
 		"dev": "nodemon",
-		"build": "tsc",
+		"build": "tsc --build tsconfig.json && tsc-alias -p tsconfig.json",
 		"start": "node dist/index.js",
 		"test-env-file": "env-cmd -f ./config/.test.env",
 		"test": "npm run test-env-file mocha",
@@ -15,6 +15,7 @@
 		"docker:ssh-db": "docker exec -it api_db_1 psql -d kakarot -U kakarot",
 		"migration:create": "cd src/migrations && typeorm migration:create ",
 		"migration:run": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm migration:run -d src/dataSource.ts",
+		"migration:run-prod": "typeorm migration:run -d dist/src/dataSource.js",
 		"migration:run-test": "POSTGRES_DB=kakarot_test npm run migration:run"
 	},
 	"dependencies": {
@@ -42,6 +43,7 @@
 		"nodemon": "^2.0.18",
 		"supertest": "^6.2.3",
 		"ts-node": "^10.8.0",
+		"tsc-alias": "^1.6.11",
 		"tsconfig": "*",
 		"tsconfig-paths": "^4.0.0",
 		"typescript": "^4.5.3"

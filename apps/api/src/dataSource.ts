@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm'
 import { User } from '@src/entities/User'
 
+const isRunningBuild = process?.env?.NODE_ENV === 'production'
+
 const dataSource = new DataSource({
 	type: 'postgres',
 	host: process?.env?.PG_HOST,
@@ -12,7 +14,9 @@ const dataSource = new DataSource({
 	logging: true,
 	synchronize: false,
 	subscribers: [],
-	migrations: ['src/migrations/**/*.ts'],
+	migrations: [
+		isRunningBuild ? 'dist/src/migrations/**/*.js' : 'src/migrations/**/*.ts',
+	],
 })
 
 export const repository = {

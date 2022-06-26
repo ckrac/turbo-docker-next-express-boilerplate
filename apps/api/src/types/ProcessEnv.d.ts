@@ -1,7 +1,7 @@
 declare namespace NodeJS {
 	export interface ProcessEnv {
 		PORT?: string
-		NODE_ENV?: string
+		NODE_ENV?: 'test' | 'development' | 'production'
 		PG_HOST?: string
 		PG_PORT?: string
 		POSTGRES_USER?: string

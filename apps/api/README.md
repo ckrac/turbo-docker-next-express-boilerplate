@@ -18,7 +18,7 @@
   - `CREATE DATABASE kakarot_test OWNER kakarot;`
 - run migrations
   - `yarn docker:ssh-api`
-  - `yarn migration-test:run`
+  - `migration:run-test`
 - run tests
   - `yarn docker:ssh-api`
   - `yarn test`
