@@ -10,7 +10,7 @@
 		"test-env-file": "env-cmd -f ./config/.test.env",
 		"test": "npm run test-env-file mocha",
 		"docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
-		"docker:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build",
+		"docker:prod": "docker-compose -f docker-compose.yml up --build",
 		"docker:ssh-api": "docker exec -it api_api_1 /bin/sh",
 		"docker:ssh-db": "docker exec -it api_db_1 psql -d kakarot -U kakarot",
 		"migration:create": "cd src/migrations && typeorm migration:create ",

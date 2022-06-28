@@ -2,13 +2,17 @@ version: '3'
 
 services:
   api:
-    build: .
+    build:
+      context: .
+      args:
+        NODE_ENV: production
+      target: production
     depends_on:
       - db
     ports:
       - '3000:3000'
     env_file:
-      - ./config/.dev.env
+      - ./config/.prod.env
 
   db:
     image: postgres:14
