@@ -24,16 +24,49 @@ describe('Route v1 users', () => {
 	})
 
 	describe('POST /users', () => {
-		it('Creates a user', () =>
+		const newUser = {
+			email: 'postUser@email.com',
+			username: 'postUser',
+		} as User
+
+		it('should create a user', () =>
 			request
 				.post('/api/v1/users')
-				.send({ email: 'postUser@email.com', username: 'postUser' } as User)
+				.send(newUser)
 				.expect(201)
 				.expect((res) => {
 					const { email, username, id } = res.body.data
 					expect(email).to.equal('postUser@email.com')
 					expect(username).to.equal('postUser')
 					expect(id).to.exist
+				}))
+
+		it('should return BadRequestError if email is exist', () =>
+			request
+				.post('/api/v1/users')
+				.send({
+					email: newUser.email,
+					username: newUser.username + 'new',
+				} as User)
+				.expect(400)
+				.expect((res) => {
+					const { code, message } = res.body.error
+					expect(code).to.equal('BadRequest')
+					expect(message).to.equal('Invalid username or email')
+				}))
+
+		it('should return BadRequestError if username is exist', () =>
+			request
+				.post('/api/v1/users')
+				.send({
+					email: newUser.email + 'new',
+					username: newUser.username,
+				} as User)
+				.expect(400)
+				.expect((res) => {
+					const { code, message } = res.body.error
+					expect(code).to.equal('BadRequest')
+					expect(message).to.equal('Invalid username or email')
 				}))
 	})
 

@@ -23,6 +23,7 @@
 		"morgan": "^1.10.0",
 		"pg": "^8.7.3",
 		"reflect-metadata": "^0.1.13",
+		"restify-errors": "^8.0.2",
 		"typeorm": "^0.3.6"
 	},
 	"devDependencies": {
@@ -34,6 +35,7 @@
 		"@types/morgan": "^1.9.3",
 		"@types/node": "^18.0.0",
 		"@types/pg": "^8.6.5",
+		"@types/restify-errors": "^4.3.4",
 		"@types/supertest": "^2.0.12",
 		"chai": "^4.3.6",
 		"env-cmd": "^10.1.0",
