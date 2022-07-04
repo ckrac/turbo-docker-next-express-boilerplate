@@ -89,15 +89,14 @@ describe('Route v1 characters', () => {
 				})
 				.expect(200))
 
-		it('should return BadRequestError if target update id does not exist', () =>
+		it('should return ResourceNotFoundError if target update id does not exist', () =>
 			request
 				.put('/api/v1/characters/1000')
 				.send(newCharacter)
-				.expect(400)
+				.expect(404)
 				.expect((res) => {
-					const { code, message } = res.body.error
-					expect(code).to.equal('BadRequest')
-					expect(message).to.equal('No target update')
+					const { code } = res.body.error
+					expect(code).to.equal('ResourceNotFound')
 				}))
 	})
 

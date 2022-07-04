@@ -51,7 +51,7 @@ const updateCharacter = async (
 		)
 
 		if (updateResult.affected === 0) {
-			return next(new BadRequestError('No target update'))
+			return next(new ResourceNotFoundError())
 		}
 
 		res.status(200).send()
