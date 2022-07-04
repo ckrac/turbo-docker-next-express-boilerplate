@@ -35,6 +35,31 @@ const getCharacters = async (
 	}
 }
 
-const charactersController = { registerCharacter, getCharacters }
+const updateCharacter = async (
+	req: Request<{ id: string }, {}, Omit<Character, 'id'>>,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const updateResult = await charactersService.updateCharacter(
+			Number(req.params.id),
+			req.body
+		)
+
+		if (updateResult.affected === 0) {
+			return next(new BadRequestError('No target update'))
+		}
+
+		res.status(200).send()
+	} catch (error) {
+		next(new BadRequestError())
+	}
+}
+
+const charactersController = {
+	registerCharacter,
+	getCharacters,
+	updateCharacter,
+}
 
 export default charactersController

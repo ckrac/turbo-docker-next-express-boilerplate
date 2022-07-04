@@ -14,10 +14,11 @@ const createCharacter = async (
 	return repository.character.save(newCharacter)
 }
 
-const getCharacters = async () => {
-	return repository.character.find()
-}
+const getCharacters = async () => repository.character.find()
 
-const charactersService = { createCharacter, getCharacters }
+const updateCharacter = (id: number, update: Omit<Character, 'id'>) =>
+	repository.character.update({ id }, update)
+
+const charactersService = { createCharacter, getCharacters, updateCharacter }
 
 export default charactersService

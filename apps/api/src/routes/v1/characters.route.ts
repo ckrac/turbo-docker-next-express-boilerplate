@@ -5,5 +5,6 @@ const router = express.Router()
 
 router.post('/', charactersController.registerCharacter)
 router.get('/', charactersController.getCharacters)
+router.put('/:id', charactersController.updateCharacter)
 
 export default router

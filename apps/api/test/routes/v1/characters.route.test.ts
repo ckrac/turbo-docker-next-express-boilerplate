@@ -62,5 +62,44 @@ describe('Route v1 characters', () => {
 				}))
 	})
 
+	describe('PUT /characters/:id', () => {
+		const newCharacter = {
+			name: 'Vegeta',
+			description: `Goku's main rival`,
+			image_url: 'someImage.com',
+		} as Character
+
+		before(() =>
+			charactersService
+				.createCharacter(
+					newCharacter.name,
+					newCharacter.description,
+					newCharacter.image_url
+				)
+				.then(({ id }) => (newCharacter.id = id))
+		)
+
+		it('should update a character', () =>
+			request
+				.put(`/api/v1/characters/${newCharacter.id}`)
+				.send({
+					...newCharacter,
+					description: 'The last prince of the Saiyan warrior people',
+					id: undefined,
+				})
+				.expect(200))
+
+		it('should return BadRequestError if target update id does not exist', () =>
+			request
+				.put('/api/v1/characters/1000')
+				.send(newCharacter)
+				.expect(400)
+				.expect((res) => {
+					const { code, message } = res.body.error
+					expect(code).to.equal('BadRequest')
+					expect(message).to.equal('No target update')
+				}))
+	})
+
 	after(() => clearAllRepository())
 })
