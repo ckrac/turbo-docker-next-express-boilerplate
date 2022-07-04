@@ -101,5 +101,46 @@ describe('Route v1 characters', () => {
 				}))
 	})
 
+	describe('DELETE /characters/:id', () => {
+		const newCharacter = {
+			name: 'Vegeta2',
+			description: `Goku's main rival`,
+			image_url: 'someImage.com',
+		} as Character
+
+		before(() =>
+			charactersService
+				.createCharacter(
+					newCharacter.name,
+					newCharacter.description,
+					newCharacter.image_url
+				)
+				.then(({ id }) => (newCharacter.id = id))
+		)
+
+		it('should delete a character', () =>
+			request
+				.delete(`/api/v1/characters/${newCharacter.id}`)
+				.send()
+				.expect(200)
+				.then(() => charactersService.getCharacters())
+				.then((characters) => {
+					const isExistingCharacter = characters.some(
+						({ id }) => id === newCharacter.id
+					)
+					expect(isExistingCharacter).equal(false)
+				}))
+
+		it('should return ResourceNotFoundError if target update id does not exist', () =>
+			request
+				.delete('/api/v1/characters/1000')
+				.send(newCharacter)
+				.expect(404)
+				.expect((res) => {
+					const { code } = res.body.error
+					expect(code).to.equal('ResourceNotFound')
+				}))
+	})
+
 	after(() => clearAllRepository())
 })

@@ -1,4 +1,8 @@
-import { BadRequestError, InternalServerError } from 'restify-errors'
+import {
+	BadRequestError,
+	InternalServerError,
+	ResourceNotFoundError,
+} from 'restify-errors'
 import { Request, Response, NextFunction } from 'express'
 import { TypedRequestBody } from '@src/types/Request'
 import { Character } from '@src/entities/Character'
@@ -56,10 +60,31 @@ const updateCharacter = async (
 	}
 }
 
+const deleteCharacter = async (
+	req: Request<{ id: string }>,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const deleteResult = await charactersService.deleteCharacter(
+			Number(req.params.id)
+		)
+
+		if (deleteResult.affected === 0) {
+			return next(new ResourceNotFoundError())
+		}
+
+		res.status(200).send()
+	} catch (error) {
+		next(new BadRequestError())
+	}
+}
+
 const charactersController = {
 	registerCharacter,
 	getCharacters,
 	updateCharacter,
+	deleteCharacter,
 }
 
 export default charactersController
