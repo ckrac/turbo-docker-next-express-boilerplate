@@ -1,17 +1,22 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
-@Entity('users')
-export class User {
+@Entity('characters')
+export class Character {
 	@PrimaryGeneratedColumn()
 	id!: number
 
 	@Column({
 		unique: true,
 	})
-	email!: string
+	name!: string
 
 	@Column({
-		unique: true,
+		unique: false,
 	})
-	username!: string
+	description!: string
+
+	@Column({
+		unique: false,
+	})
+	image_url!: string
 }

@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm'
-import { User } from '@src/entities/User'
+import { Character } from '@src/entities/Character'
 
 const dataSource = new DataSource({
 	type: 'postgres',
@@ -16,7 +16,7 @@ const dataSource = new DataSource({
 })
 
 export const repository = {
-	user: dataSource.getRepository(User),
+	character: dataSource.getRepository(Character),
 } as const
 
 export default dataSource
