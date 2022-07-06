@@ -1,18 +1,5 @@
 import React, { FC } from 'react'
-import Navbar from './Navbar'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-
-const darkTheme = createTheme({
-	palette: {
-		mode: 'dark',
-		primary: {
-			main: '#5e35b1',
-		},
-		secondary: {
-			main: '#f50057',
-		},
-	},
-})
 
 interface Props {
 	children?: React.ReactNode
@@ -20,8 +7,7 @@ interface Props {
 
 const Layout: FC<Props> = ({ children }) => {
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<Navbar />
+		<ThemeProvider theme={createTheme()}>
 			<main>{children}</main>
 		</ThemeProvider>
 	)
