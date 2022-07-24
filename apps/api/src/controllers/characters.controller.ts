@@ -4,13 +4,16 @@ import {
 	ResourceNotFoundError,
 } from 'restify-errors'
 import { Request, Response, NextFunction } from 'express'
-import { TypedRequestBody } from '@src/types/Request'
-import { Character } from '@src/entities/Character'
 import charactersService from '@src/services/characters.service'
+import { operations } from '@src/types/schema'
 
 const registerCharacter = async (
-	req: TypedRequestBody<Omit<Character, 'id'>>,
-	res: Response,
+	req: Request<
+		operations['addCharacter']['requestBody']['content']['application/json']
+	>,
+	res: Response<
+		operations['addCharacter']['responses']['201']['content']['application/json']
+	>,
 	next: NextFunction
 ) => {
 	const { description, image_url, name } = req.body
@@ -28,7 +31,9 @@ const registerCharacter = async (
 
 const getCharacters = async (
 	req: Request,
-	res: Response,
+	res: Response<
+		operations['getCharacters']['responses']['200']['content']['application/json']
+	>,
 	next: NextFunction
 ) => {
 	try {
@@ -40,7 +45,12 @@ const getCharacters = async (
 }
 
 const updateCharacter = async (
-	req: Request<{ id: string }, {}, Omit<Character, 'id'>>,
+	req: Request<
+		operations['updateCharacter']['parameters']['path'],
+		{},
+		operations['updateCharacter']['requestBody']['content']['application/json']
+	>,
+	// req: Request<{ id: string }, {}, Omit<Character, 'id'>>,
 	res: Response,
 	next: NextFunction
 ) => {
@@ -61,7 +71,7 @@ const updateCharacter = async (
 }
 
 const deleteCharacter = async (
-	req: Request<{ id: string }>,
+	req: Request<operations['deleteCharacter']['parameters']['path']>,
 	res: Response,
 	next: NextFunction
 ) => {

@@ -1,0 +1,161 @@
+openapi: 3.0.1
+info:
+  title: Dragon Ball Characters API
+  description: This is a sample dragon ball characters server
+  version: 1.0.0
+basePath: '/v2'
+
+paths:
+  /status:
+    get:
+      summary: Returns status of server
+      operationId: getStatus
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: 'ok'
+  /character:
+    get:
+      tags:
+        - character
+      summary: Returns a list of characters
+      operationId: getCharacters
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Character'
+                required:
+                  - data
+        500:
+          $ref: '#/components/schemas/InternalServerError'
+    post:
+      tags:
+        - character
+      summary: Add a new character to the database
+      operationId: addCharacter
+      requestBody:
+        summary: Character object that needs to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CharacterAdd'
+        required: true
+      responses:
+        201:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Character'
+                required:
+                  - data
+        400:
+          $ref: '#/components/schemas/BadRequest'
+          description: Invalid name
+  /character/{id}:
+    put:
+      tags: -character
+      summary: Update an existing character
+      operationId: updateCharacter
+      parameters:
+        - name: id
+          in: path
+          description: ID of character to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update character object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CharacterAdd'
+        required: true
+      responses:
+        200:
+          description: successful operation
+        404:
+          $ref: '#/components/schemas/ResourceNotFound'
+    delete:
+      tags: -character
+      summary: Delete an existing character
+      operationId: deleteCharacter
+      parameters:
+        - name: id
+          in: path
+          description: ID of character to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: successful operation
+        404:
+          $ref: '#/components/schemas/ResourceNotFound'
+components:
+  schemas:
+    Character:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        image_url:
+          type: string
+      xml:
+        name: Character
+    CharacterAdd:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        image_url:
+          type: string
+      required:
+        - name
+        - description
+        - image_url
+    ApiErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+    InternalServerError:
+      description: Server encountered an unexpected condition
+      schema:
+        $ref: '#/components/schemas/ApiErrorResponse'
+    BadRequest:
+      description: Can not process request because of client error
+      schema:
+        $ref: '#/components/schemas/ApiErrorResponse'
+    ResourceNotFound:
+      description: The specified resource was not found
+      schema:
+        $ref: '#/components/schemas/ApiErrorResponse'

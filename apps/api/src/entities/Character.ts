@@ -1,7 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { components } from '@src/types/schema'
 
 @Entity('characters')
-export class Character {
+export class Character implements Required<components['schemas']['Character']> {
 	@PrimaryGeneratedColumn()
 	id!: number
 

@@ -16,7 +16,8 @@
 		"migration:create": "cd src/migrations && typeorm migration:create ",
 		"migration:run": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm migration:run -d src/dataSource.ts",
 		"migration:run-prod": "typeorm migration:run -d dist/src/dataSource.js",
-		"migration:run-test": "POSTGRES_DB=kakarot_test npm run migration:run"
+		"migration:run-test": "POSTGRES_DB=kakarot_test npm run migration:run",
+		"open-api:types": "openapi-typescript schema.yaml --output src/types/schema.ts"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
@@ -46,6 +47,7 @@
 		"eslint-config-custom": "*",
 		"mocha": "^10.0.0",
 		"nodemon": "^2.0.18",
+		"openapi-typescript": "^5.4.1",
 		"supertest": "^6.2.3",
 		"ts-node": "^10.8.0",
 		"tsc-alias": "^1.6.11",
