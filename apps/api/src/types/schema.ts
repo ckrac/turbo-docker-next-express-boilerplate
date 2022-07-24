@@ -21,10 +21,10 @@ export interface components {
   schemas: {
     Character: {
       /** Format: int64 */
-      id?: number;
-      name?: string;
-      description?: string;
-      image_url?: string;
+      id: number;
+      name: string;
+      description: string;
+      image_url: string;
     };
     CharacterAdd: {
       name: string;

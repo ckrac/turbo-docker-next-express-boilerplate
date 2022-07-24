@@ -122,6 +122,11 @@ components:
           type: string
         image_url:
           type: string
+      required:
+        - id
+        - name
+        - description
+        - image_url
       xml:
         name: Character
     CharacterAdd:
